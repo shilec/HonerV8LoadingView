@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:loading="http://schemas.android.com/apk/res-auto"
+    tools:context="com.scott.honerv8loadingview.MainActivity">
+    <!--loading:loading_start_angle="0"-->
+    <!--loading:loading_scale_rate="0.7"-->
+    <!--loading:loading_track_radius="80dp"-->
+    <!--loading:loading_point_radius="13dp"-->
+    <!--loading:loading_color="@color/colorAccent"-->
+    <!--loading:loading_angle_step="0"-->
+    <!--loading:loading_dur="1000"-->
+    <!--loading:loading_point_count="13"-->
+    <com.scott.honerv8loadingview.view.HonerLoadingView
+        loading:loading_point_count="10"
+        loading:loading_color="@color/colorPrimary"
+        android:layout_width="100dp"
+        android:layout_height="100dp" />
+</RelativeLayout>

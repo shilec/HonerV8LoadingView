@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="HonerLoadingView">
+        <attr name="loading_color" format="color"/>
+        <attr name="loading_track_radius" format="dimension"/>
+        <attr name="loading_point_count" format="integer"/>
+        <attr name="loading_point_radius" format="dimension"/>
+        <attr name="loading_dur" format="integer"/>
+        <attr name="loading_angle_step" format="integer"/>
+        <attr name="loading_start_angle" format="float"/>
+        <attr name="loading_scale_rate" format="float"/>
+        <attr name="loading_peer_delay" format="integer"/>
+    </declare-styleable>
+</resources>
