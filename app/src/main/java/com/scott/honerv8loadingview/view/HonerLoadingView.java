@@ -1,5 +1,6 @@
 package com.scott.honerv8loadingview.view;
 
+import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -9,7 +10,9 @@ import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.AccelerateInterpolator;
+import android.view.animation.Interpolator;
 
 import com.scott.honerv8loadingview.R;
 
@@ -73,6 +76,12 @@ public class HonerLoadingView extends View{
         mPaint.setColor(mColor);
     }
 
+    public void setInterpolator(TimeInterpolator itp) {
+        if(itp == null) return;
+        for(ValueAnimator va : mAnims) {
+            va.setInterpolator(itp);
+        }
+    }
 
     private void initParams(Context context, AttributeSet attrs) {
         TypedArray arry = context.obtainStyledAttributes(attrs,R.styleable.HonerLoadingView);
@@ -157,7 +166,7 @@ public class HonerLoadingView extends View{
             final int index = i;
             ValueAnimator anim = ValueAnimator.ofFloat(mStart_angle,mEnd_angle);
             anim.setDuration(mDurTime - (i * mPeerDelay));
-            anim.setInterpolator(new AccelerateInterpolator(INTERUPTER_FACTOR));
+            anim.setInterpolator(new AccelerateDecelerateInterpolator());
             anim.setStartDelay((long) (i * mPeerDelay));
             anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override

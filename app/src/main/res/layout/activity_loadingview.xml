@@ -4,8 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:loading="http://schemas.android.com/apk/res-auto"
     tools:context="com.scott.honerv8loadingview.MainActivity">
-    <com.scott.honerv8loadingview.view.InterpolatorView
+
+    <com.scott.honerv8loadingview.view.HonerLoadingView
+        loading:loading_dur="2500"
+        loading:loading_point_radius="4dp"
+        loading:loading_scale_rate="1"
+        loading:loading_point_count="6"
+        loading:loading_color="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 </RelativeLayout>
