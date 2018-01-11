@@ -1,5 +1,6 @@
 package com.scott.honerv8loadingview.view;
 
+import android.animation.Animator;
 import android.animation.TimeInterpolator;
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -124,20 +125,34 @@ public class HonerLoadingView extends View{
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        x = getWidth() / 2;
-        y = getHeight() / 2;
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+        //轨道圆心
+        x = getMeasuredWidth() / 2;
+        y = getMeasuredHeight() / 2;
 
+        //初始圆点圆心
         x1 = x;
         y1 = y - mTrackRadius;
         initPoints();
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
+
+    public void release() {
+        for(Animator anim : mAnims) {
+            anim.removeAllListeners();
+            anim.cancel();
+        }
+
+        mAnims.clear();
+        mPoints.clear();
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         for(int i = 0; i < mPoints.size(); i++) {
+            //圆点半径为 = 最大圆点半径 - 缩放系数 * 当前点的位置
             canvas.drawCircle(mPoints.get(i).x, mPoints.get(i).y, (float) (mRadius - (mPoints.get(i).index * mScaleRate)), mPaint);
         }
+        //等待一个完整的动画执行完在播放下一个
         if(isRunning()) return;
         mPoints.clear();
         updateRange();
@@ -148,10 +163,14 @@ public class HonerLoadingView extends View{
      * 刷新轨道角度
      */
     private void updateRange() {
+        //计算第一个点旋转的起点和中点
+        // 一圈为 360. + mAngleStep, 这样每次绘制的起始点会在 360 / mAngleStep 次后完成一周旋转
+        //也可以设置 mAngleStep = 0 , 则每次的绘制点将会固定
         mStart_angle = mEnd_angle;
         if(mStart_angle == ((360 / mAngleStep) * mRange)) {
             mStart_angle = 0;
         }
+        //终点
         mEnd_angle = mStart_angle + DEFAULT_END;
         for(ValueAnimator va : mAnims) {
             va.setFloatValues(mStart_angle,mEnd_angle);
@@ -164,13 +183,15 @@ public class HonerLoadingView extends View{
     private void initAnimator() {
         for(int i = 0; i < mPointCount; i++) {
             final int index = i;
-            ValueAnimator anim = ValueAnimator.ofFloat(mStart_angle,mEnd_angle);
-            anim.setDuration(mDurTime - (i * mPeerDelay));
+            ValueAnimator anim = ValueAnimator.ofFloat(mStart_angle,mEnd_angle); //生成旋转渐变角度
+            anim.setDuration(mDurTime - (i * mPeerDelay)); // 每个点播放的动画时长  = 总时长 - 当前位置 * 每个点置后的时间，
             anim.setInterpolator(new AccelerateDecelerateInterpolator());
-            anim.setStartDelay((long) (i * mPeerDelay));
+            anim.setStartDelay((long) (i * mPeerDelay)); //延迟播放
             anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
                 @Override
                 public void onAnimationUpdate(ValueAnimator animation) {
+
+                    //更新当前起点绘制的位置
                     CPoint cp = getPoint(index,animation);
                     int id = mPoints.indexOf(cp);
                     if(id != -1) {
@@ -184,6 +205,7 @@ public class HonerLoadingView extends View{
         }
     }
 
+    //生成圆点
     private void initPoints() {
         for(int i = 0; i < mPointCount; i++) {
             mPoints.add(new CPoint((int)x1,(int)y1,i));
@@ -195,6 +217,9 @@ public class HonerLoadingView extends View{
      * @param index
      * @param animation
      * @return
+     *
+     * x=a+(x0-a)cosα-(y0-b)sinα
+     * y=b+(x0-a)sinα+(y0-b)cosα
      */
     private CPoint getPoint(int index,ValueAnimator animation) {
         mNowAngle = Float.parseFloat(animation.getAnimatedValue().toString());
@@ -218,10 +243,12 @@ public class HonerLoadingView extends View{
         }
         return false;
     }
+
+
     class CPoint {
 
         public CPoint(int x,int y,int index) {
-            this.index = index;
+            this.index = index; //点的位置，用于计算延迟时间，和绘制大小
             this.x = x;
             this.y = y;
         }

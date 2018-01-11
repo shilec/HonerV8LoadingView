@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion rootProject.ext.sdkVersion
+    buildToolsVersion rootProject.ext.buildVersion
     defaultConfig {
         applicationId "com.scott.honerv8loadingview"
-        minSdkVersion 19
-        targetSdkVersion 25
+        minSdkVersion rootProject.ext.miniVersion
+        targetSdkVersion rootProject.ext.targetVersion
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -26,5 +26,6 @@ dependencies {
     })
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    compile 'com.github.markzhai:blockcanary-android:1.5.0'
     testCompile 'junit:junit:4.12'
 }

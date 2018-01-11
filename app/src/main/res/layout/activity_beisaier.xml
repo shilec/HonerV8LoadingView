@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_vertical"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.scott.honerv8loadingview.view.ScrollViewDemo
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <TextView
+            android:padding="20dp"
+            android:background="#ff00ff"
+            android:text="2321321"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:padding="20dp"
+            android:background="#ee0332"
+            android:text="2321321"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:background="#00ff00"
+            android:text="2321321"
+            android:padding="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        </com.scott.honerv8loadingview.view.ScrollViewDemo>
+</RelativeLayout>

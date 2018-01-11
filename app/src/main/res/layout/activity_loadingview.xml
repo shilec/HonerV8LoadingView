@@ -8,7 +8,9 @@
     tools:context="com.scott.honerv8loadingview.MainActivity">
 
     <com.scott.honerv8loadingview.view.HonerLoadingView
-        loading:loading_dur="2500"
+        android:layout_centerInParent="true"
+        loading:loading_dur="1500"
+        loading:loading_peer_delay="140"
         loading:loading_point_radius="4dp"
         loading:loading_scale_rate="1"
         loading:loading_point_count="6"
