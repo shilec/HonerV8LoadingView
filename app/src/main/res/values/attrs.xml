@@ -11,4 +11,25 @@
         <attr name="loading_scale_rate" format="float"/>
         <attr name="loading_peer_delay" format="integer"/>
     </declare-styleable>
+
+    <declare-styleable name="ProgressWheel">
+        <attr name="matProg_progressIndeterminate" format="boolean" />
+        <attr name="matProg_barColor" format="color" />
+        <attr name="matProg_rimColor" format="color" />
+        <attr name="matProg_rimWidth" format="dimension" />
+        <attr name="matProg_spinSpeed" format="float" />
+        <attr name="matProg_barSpinCycleTime" format="integer" />
+        <attr name="matProg_circleRadius" format="dimension" />
+        <attr name="matProg_fillRadius" format="boolean" />
+        <attr name="matProg_barWidth" format="dimension" />
+        <attr name="matProg_linearProgress" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="CircleLoadingView">
+        <attr name="loading_point_color" format="color"/>
+        <attr name="loading_track_radius" format="dimension"/>
+        <attr name="loading_point_radius" format="dimension"/>
+        <attr name="loading_dur" format="integer"/>
+        <attr name="loading_angle_step" format="integer"/>
+    </declare-styleable>
 </resources>
