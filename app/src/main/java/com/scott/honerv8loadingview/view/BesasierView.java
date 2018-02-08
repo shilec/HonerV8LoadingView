@@ -88,7 +88,7 @@ public class BesasierView  extends SurfaceView implements SurfaceHolder.Callback
 
             }
         });
-        anim.start();
+        //anim.start();
     }
 
     @Override

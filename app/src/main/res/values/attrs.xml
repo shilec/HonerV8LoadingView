@@ -25,11 +25,4 @@
         <attr name="matProg_linearProgress" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="CircleLoadingView">
-        <attr name="loading_point_color" format="color"/>
-        <attr name="loading_track_radius" format="dimension"/>
-        <attr name="loading_point_radius" format="dimension"/>
-        <attr name="loading_dur" format="integer"/>
-        <attr name="loading_angle_step" format="integer"/>
-    </declare-styleable>
 </resources>
