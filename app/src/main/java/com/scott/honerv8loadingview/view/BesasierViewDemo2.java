@@ -33,7 +33,7 @@ public class BesasierViewDemo2 extends View implements ValueAnimator.AnimatorUpd
     private double mCircle2R = 50;
 
     private double mScaleRadian = Math.PI / 10;
-    private long mDurTime = 1000;
+    private long mDurTime = 5000;
     private float mMaxLength = 200;
     private float mMaxLeaveLength = 30;
 
@@ -101,7 +101,7 @@ public class BesasierViewDemo2 extends View implements ValueAnimator.AnimatorUpd
 
        double a1;
        double a2;
-
+       //mScaleRadian = Math.PI/2 - Math.asin(mCircleR / x1);
 
        if(mCircle2X > mCircleX) {
            a1 = mScaleRadian;
@@ -129,10 +129,10 @@ public class BesasierViewDemo2 extends View implements ValueAnimator.AnimatorUpd
 //        Log.e(TAG,"a = " + Math.sin(Math.PI / 2));
 //        Log.e(TAG,"a = " + Math.asin(1));
 
-        if((mLength > 0 && mLength < mMaxLeaveLength) ||
-                (mLength < 0 && mLength > (-2 * mCircleR - 2 * mCircle2R - mMaxLeaveLength))) {
+//        if((mLength > 0 && mLength < mMaxLeaveLength) ||
+//                (mLength < 0 && mLength > (-2 * mCircleR - 2 * mCircle2R - mMaxLeaveLength))) {
             drawStick(a1, a2, canvas);
-        }
+        //}
     }
 
     private void drawStick(double a1,double a2,Canvas canvas) {
